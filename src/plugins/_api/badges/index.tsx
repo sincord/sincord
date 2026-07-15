@@ -47,7 +47,7 @@ const ContributorBadge: ProfileBadge = {
 
 const SincordContributorBadge: ProfileBadge = {
     id: "sincord_contributor_badge",
-    description: "Sincord Contributor",
+    description: "Discord Contributor",
     iconSrc: SINCORD_CONTRIBUTOR_BADGE,
     position: BadgePosition.START,
     shouldShow: ({ userId }) => shouldShowSincordContributorBadge(userId),
@@ -258,7 +258,7 @@ export default definePlugin({
                 ContextMenuApi.openContextMenu(event, () => <BadgeContextMenu badge={badge} />);
             },
             onClick() {
-                return badge.tooltip === "Sincord Translator" ? SincordTranslatorModal() : SincordDonorModal();
+                return badge.tooltip === "Discord Translator" ? SincordTranslatorModal() : SincordDonorModal();
             },
         } satisfies ProfileBadge));
     }

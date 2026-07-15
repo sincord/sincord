@@ -171,10 +171,10 @@ function SincordSettings() {
                     subtitle="Thank you for donating!"
                     description={
                         isSincordDonor(user?.id) && isVencordDonor(user?.id)
-                            ? "All Vencord users can see your Vencord donor badge, and Sincord users can see your Sincord donor badge. To change your Vencord donor badge, contact @vending.machine. For your Sincord donor badge, make a ticket in Sincord's server."
+                            ? "All Vencord users can see your Vencord donor badge, and Discord users can see your Discord donor badge. To change your Vencord donor badge, contact @vending.machine. For your Discord donor badge, make a ticket in Discord's server."
                             : isVencordDonor(user?.id)
                                 ? "All Vencord users can see your badge! You can manage your perks by messaging @vending.machine."
-                                : "All Sincord users can see your badge! You can manage your perks by making a ticket in Sincord's server."
+                                : "All Discord users can see your badge! You can manage your perks by making a ticket in Discord's server."
                     }
                     cardImage={VENNIE_DONATOR_IMAGE}
                     backgroundImage={DONOR_BACKGROUND_IMAGE}
@@ -185,7 +185,7 @@ function SincordSettings() {
             ) : (
                 <SpecialCard
                     title="Support the Project"
-                    description="Please consider supporting the development of Sincord by donating!"
+                    description="Please consider supporting the development of Discord by donating!"
                     cardImage={donateImage}
                     backgroundImage={DONOR_BACKGROUND_IMAGE}
                     backgroundColor="#c3a3ce"
@@ -197,7 +197,7 @@ function SincordSettings() {
                 <SpecialCard
                     title="Contributions"
                     subtitle="Thank you for contributing!"
-                    description="Since you've contributed to Sincord you now have a cool new badge!"
+                    description="Since you've contributed to Discord you now have a cool new badge!"
                     cardImage={COZY_CONTRIB_IMAGE}
                     backgroundImage={CONTRIB_BACKGROUND_IMAGE}
                     backgroundColor="#EDCC87"
@@ -260,7 +260,7 @@ function SincordSettings() {
 
             <Heading className={Margins.top20}>Client Settings</Heading>
             <Paragraph className={Margins.bottom16}>
-                Configure how Sincord behaves and integrates with Discord. These settings affect the Discord client's appearance and behavior.
+                Configure how Discord behaves and integrates with Discord. These settings affect the Discord client's appearance and behavior.
             </Paragraph>
             <Notice.Info className={Margins.bottom20} style={{ width: "100%" }}>
                 You can customize where this settings section appears in Discord's settings menu by configuring the{" "}
@@ -283,7 +283,7 @@ function SincordSettings() {
     );
 }
 
-export default wrapTab(SincordSettings, "Sincord Settings");
+export default wrapTab(SincordSettings, "Discord Settings");
 
 export function isSincordDonor(userId: string): boolean {
     const donorBadges = BadgeAPI.getSincordDonorBadges(userId);

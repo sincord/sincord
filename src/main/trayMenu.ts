@@ -94,18 +94,18 @@ function openAboutWindow() {
 function createSincordMenuItems(): MenuItemConstructorOptions[] {
     return [
         {
-            label: "Sincord",
+            label: "Discord",
             submenu: [
                 {
-                    label: "About Sincord",
+                    label: "About Discord",
                     click: () => openAboutWindow()
                 },
                 {
-                    label: cachedUpdateAvailable ? "Update Sincord" : "Check for Updates",
+                    label: cachedUpdateAvailable ? "Update Discord" : "Check for Updates",
                     click: () => sendToRenderer(IpcEvents.TRAY_CHECK_UPDATES)
                 },
                 {
-                    label: "Repair Sincord",
+                    label: "Repair Discord",
                     click: () => sendToRenderer(IpcEvents.TRAY_REPAIR)
                 },
                 { type: "separator" },
@@ -127,7 +127,7 @@ export function patchTrayMenu(): void {
     const originalBuildFromTemplate = Menu.buildFromTemplate;
 
     Menu.buildFromTemplate = function (template: MenuItemConstructorOptions[]) {
-        const alreadyPatched = template.some(item => item.label === "Sincord");
+        const alreadyPatched = template.some(item => item.label === "Discord");
         if (isTrayMenu(template) && !alreadyPatched) {
             const insertIndex = findInsertIndex(template);
             const sincordItems = createSincordMenuItems();

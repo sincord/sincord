@@ -24,7 +24,7 @@ import { RendererSettings } from "./settings";
 import { patchTrayMenu } from "./trayMenu";
 import { IS_VANILLA } from "./utils/constants";
 
-console.log("[Sincord] Starting up...");
+console.log("[Discord] Starting up...");
 
 // Our injector file at app/index.js
 const injectorPath = require.main!.filename;
@@ -52,7 +52,7 @@ if (!IS_VANILLA) {
         try {
             require("./hostUpdateHook").installHostUpdateHook();
         } catch (err) {
-            console.error("[Sincord] Failed to install host update hook", err);
+            console.error("[Discord] Failed to install host update hook", err);
         }
     }
 
@@ -178,8 +178,8 @@ if (!IS_VANILLA) {
     app.commandLine.appendSwitch("disable-background-timer-throttling");
     app.commandLine.appendSwitch("disable-backgrounding-occluded-windows");
 } else {
-    console.log("[Sincord] Running in vanilla mode. Not loading Sincord");
+    console.log("[Discord] Running in vanilla mode. Not loading Sincord");
 }
 
-console.log("[Sincord] Loading original Discord app.asar");
+console.log("[Discord] Loading original Discord app.asar");
 require(require.main!.filename);

@@ -58,9 +58,9 @@ func main() {
 	var helpFlag = flag.Bool("help", false, "View usage instructions")
 	var versionFlag = flag.Bool("version", false, "View the program version")
 	var updateSelfFlag = flag.Bool("update-self", false, "Update me to the latest version")
-	var installFlag = flag.Bool("install", false, "Install Sincord")
-	var updateFlag = flag.Bool("repair", false, "Repair Sincord")
-	var uninstallFlag = flag.Bool("uninstall", false, "Uninstall Sincord")
+	var installFlag = flag.Bool("install", false, "Install Discord")
+	var updateFlag = flag.Bool("repair", false, "Repair Discord")
+	var uninstallFlag = flag.Bool("uninstall", false, "Uninstall Discord")
 	var installOpenAsarFlag = flag.Bool("install-openasar", false, "Install OpenAsar")
 	var uninstallOpenAsarFlag = flag.Bool("uninstall-openasar", false, "Uninstall OpenAsar")
 	var locationFlag = flag.String("location", "", "The location of the Discord install to modify")
@@ -74,7 +74,7 @@ func main() {
 
 	if *versionFlag {
 		fmt.Println("Sinlotl Cli", buildinfo.InstallerTag, "("+buildinfo.InstallerGitHash+")")
-		fmt.Println("Copyright (C) 2026 Vendicated, thororen1234, Vencord, and Sincord contributors")
+		fmt.Println("Copyright (C) 2026 Vendicated, thororen1234, Vencord, and Discord contributors")
 		fmt.Println("License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.")
 		return
 	}
@@ -98,9 +98,11 @@ func main() {
 		die("The 'branch' flag must be one of the following: [auto|stable|ptb|canary]")
 	}
 
-	if *installFlag || *updateFlag {
+	// --install uses the build embedded in this installer, so it needs no network.
+	// Only --repair (update) actually downloads, so only it waits on the release fetch.
+	if *updateFlag {
 		if !<-GithubDoneChan {
-			die("Not " + Ternary(*installFlag, "installing", "updating") + " as fetching release data failed")
+			die("Not updating as fetching release data failed")
 		}
 	}
 
@@ -118,9 +120,9 @@ func main() {
 		}()
 
 		choices := []string{
-			"Install Sincord",
-			"Repair Sincord",
-			"Uninstall Sincord",
+			"Install Discord",
+			"Repair Discord",
+			"Uninstall Discord",
 			"Install OpenAsar",
 			"Uninstall OpenAsar",
 			"View Help Menu",
@@ -154,11 +156,15 @@ func main() {
 	var err error
 	var errSilent error
 	if install {
+		Log.Info("Writing bundled Discord build...")
+		if writeErr := writeEmbeddedBuild(); writeErr != nil {
+			die("Failed to write bundled build: " + writeErr.Error())
+		}
 		errSilent = PromptDiscord("patch", *locationFlag, *branchFlag).patch()
 	} else if uninstall {
 		errSilent = PromptDiscord("unpatch", *locationFlag, *branchFlag).unpatch()
 	} else if update {
-		Log.Info("Downloading latest Sincord files...")
+		Log.Info("Downloading latest Discord files...")
 		err := installLatestBuilds()
 		Log.Info("Done!")
 		if err == nil {
@@ -297,5 +303,5 @@ func HandleScuffedInstall() {
 	fmt.Println("Hold On!")
 	fmt.Println("You have a broken Discord Install.")
 	fmt.Println("Please reinstall Discord before proceeding!")
-	fmt.Println("Otherwise, Sincord will likely not work.")
+	fmt.Println("Otherwise, Discord will likely not work.")
 }

@@ -97,7 +97,7 @@ interface SettingsLayoutBuilder {
 const settings = definePluginSettings({
     settingsLocation: {
         type: OptionType.SELECT,
-        description: "Where to put the Sincord settings section",
+        description: "Where to put the Discord settings section",
         options: [
             { label: "At the very top", value: "top" },
             { label: "Above the Nitro section", value: "aboveNitro", default: true },
@@ -190,48 +190,10 @@ export default definePlugin({
 
         const sincordEntries: SettingsLayoutNode[] = [
             buildEntry({
-                key: "sincord_main",
-                title: "Sincord",
-                panelTitle: "Sincord Settings",
-                Component: VencordTab,
-                Icon: MainSettingsIcon
-            }),
-            buildEntry({
                 key: "sincord_plugins",
                 title: "Plugins",
                 Component: PluginsTab,
                 Icon: PluginsIcon
-            }),
-            buildEntry({
-                key: "sincord_themes",
-                title: "Themes",
-                Component: ThemesTab,
-                Icon: PaintbrushIcon
-            }),
-            !IS_UPDATER_DISABLED && UpdaterTab && buildEntry({
-                key: "sincord_updater",
-                title: "Updater",
-                panelTitle: "Sincord Updater",
-                Component: UpdaterTab,
-                Icon: UpdaterIcon
-            }),
-            buildEntry({
-                key: "sincord_changelog",
-                title: "Changelog",
-                Component: ChangelogTab,
-                Icon: LogIcon,
-            }),
-            buildEntry({
-                key: "sincord_backup_restore",
-                title: "Backup & Restore",
-                Component: BackupAndRestoreTab,
-                Icon: BackupRestoreIcon
-            }),
-            !IS_STANDALONE && PatchHelperTab && buildEntry({
-                key: "sincord_patch_helper",
-                title: "Patch Helper",
-                Component: PatchHelperTab,
-                Icon: PatchHelperIcon
             }),
             ...this.customEntries.map(buildEntry)
         ].filter(isTruthy);
@@ -239,7 +201,7 @@ export default definePlugin({
         const sincordSection: SettingsLayoutNode = {
             key: "sincord_section",
             type: LayoutTypes.SECTION,
-            useTitle: () => "Sincord Settings",
+            useTitle: () => "Discord Settings",
             buildLayout: () => sincordEntries
         };
 
@@ -305,7 +267,7 @@ export default definePlugin({
     getInfoRows() {
         const { electronVersion, chromiumVersion, getVersionInfo } = this;
 
-        const rows = [`Sincord ${gitHashShort}${getVersionInfo()}`];
+        const rows = [`Discord ${gitHashShort}${getVersionInfo()}`];
 
         if (electronVersion) rows.push(`Electron ${electronVersion}`);
         if (chromiumVersion) rows.push(`Chromium ${chromiumVersion}`);

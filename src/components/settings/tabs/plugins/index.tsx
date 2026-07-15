@@ -114,7 +114,7 @@ export const ExcludedReasons: Record<"web" | "discordDesktop" | "vesktop" | "sin
     vesktop: "Vesktop/Sinbop apps",
     sinbop: "Vesktop/Sinbop apps",
     web: "Vesktop/Sinbop apps & Discord web",
-    dev: "Developer version of Sincord"
+    dev: "Developer version of Discord"
 };
 
 function ExcludedPluginsList({ search }: { search: string; }) {
@@ -280,7 +280,7 @@ export default function PluginSettings() {
 
             if (isRequired) {
                 const tooltipText = p.required || !depMap[p.name]
-                    ? "This plugin is required for Sincord to function."
+                    ? "This plugin is required for Discord to function."
                     : <PluginDependencyList deps={depMap[p.name]?.filter(d => settings.plugins[d].enabled)} />;
 
                 requiredPlugins.push(
@@ -421,7 +421,7 @@ export default function PluginSettings() {
                             { label: "Show All", value: SearchStatus.ALL, default: true },
                             { label: "Show Enabled", value: SearchStatus.ENABLED },
                             { label: "Show Disabled", value: SearchStatus.DISABLED },
-                            { label: "Show Sincord", value: SearchStatus.SINCORD },
+                            { label: "Show Discord", value: SearchStatus.SINCORD },
                             { label: "Show Vencord", value: SearchStatus.VENCORD },
                             { label: "Show New", value: SearchStatus.NEW },
                             hasUserPlugins && { label: "Show UserPlugins", value: SearchStatus.USER_PLUGINS },

@@ -184,8 +184,8 @@ const settings = definePluginSettings({
     },
     colorMobileIndicator: {
         type: OptionType.BOOLEAN,
-        description: "Whether to make the mobile indicator match the color of the user status.",
-        default: true,
+        description: "Whether to make the mobile indicator match the color of the user status. (Off by default: this patches Discord's core status rendering and can break on Discord updates.)",
+        default: false,
         restartNeeded: true
     },
     showBots: {
@@ -200,7 +200,7 @@ const settings = definePluginSettings({
         restartNeeded: true,
         options: [
             {
-                label: "Sincord",
+                label: "Discord",
                 value: "sincord",
                 default: true
             },

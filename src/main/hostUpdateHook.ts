@@ -65,7 +65,7 @@ interface DiscordDesktopCore {
     __sincordStartupWrapped?: boolean;
 }
 
-const error = (...args: unknown[]) => console.error("[Sincord:HostUpdate]", ...args);
+const error = (...args: unknown[]) => console.error("[Discord:HostUpdate]", ...args);
 
 const hookedUpdaters = new WeakSet<DiscordHostUpdater>();
 let hooked = false;

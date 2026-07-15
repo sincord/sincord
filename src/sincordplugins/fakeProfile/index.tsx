@@ -239,7 +239,10 @@ function forceAccountPanelRerender() {
         const WP = (Vencord as any).Webpack;
         const US = WP?.findByStoreName?.("UserStore"); if (US?.emitChange) US.emitChange();
         const UPS = WP?.findByStoreName?.("UserProfileStore"); if (UPS?.emitChange) UPS.emitChange();
-        FluxDispatcher.dispatch({ type: "USER_SETTINGS_PROTO_UPDATE", settings: { type: 1, proto: {} } });
+        // NOTE: previously dispatched USER_SETTINGS_PROTO_UPDATE with an empty proto here to force a
+        // re-render. That resets the PreloadedUserSettings proto — which includes your status — flipping
+        // you to "online" on every gateway reconnect (CONNECTION_OPEN). The emitChange() calls above are
+        // enough to refresh the account panel, so the proto dispatch is removed.
         if (isEnabled) startDomObserver(); else stopDomObserver();
     } catch { }
 }

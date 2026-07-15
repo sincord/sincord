@@ -146,7 +146,7 @@ async function runUpdateCheck() {
                 notifiedForUpdatesThisSession = true;
 
                 showNotice(
-                    "Sincord has been updated!",
+                    "Discord has been updated!",
                     "Restart",
                     relaunch
                 );
@@ -158,7 +158,7 @@ async function runUpdateCheck() {
         notifiedForUpdatesThisSession = true;
 
         showNotice(
-            "A new version of Sincord is available!",
+            "A new version of Discord is available!",
             "View Update",
             () => openSettingsTabModal(UpdaterTab!)
         );
@@ -176,7 +176,7 @@ function initTrayIpc() {
             VencordNative.tray.setUpdateState(isOutdated);
 
             if (isOutdated) {
-                showNotice("An Sincord update is available!", "View Update", () => openSettingsTabModal(UpdaterTab!));
+                showNotice("A Discord update is available!", "View Update", () => openSettingsTabModal(UpdaterTab!));
             } else {
                 showNotice("No updates available, you're on the latest version!", "OK", popNotice);
             }
@@ -191,7 +191,7 @@ function initTrayIpc() {
             await update();
             relaunch();
         } catch (err) {
-            UpdateLogger.error("Failed to repair Sincord", err);
+            UpdateLogger.error("Failed to repair Discord", err);
         }
     });
 
@@ -221,7 +221,7 @@ async function init() {
                 "Webpack has finished initialising, but some patches haven't been applied yet.",
                 "This might be expected since some Modules are lazy loaded, but please verify",
                 "that all plugins are working as intended.",
-                "You are seeing this warning because this is a Development build of Sincord.",
+                "You are seeing this warning because this is a Development build of Discord.",
                 "\nThe following patches have not been applied:",
                 "\n\n" + pendingPatches.map(p => `${p.plugin}: ${p.find}`).join("\n")
             );

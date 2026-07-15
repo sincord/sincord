@@ -62,7 +62,7 @@ export const patchResourcesDir = (resources: string, patcherJsPath: string): boo
             try {
                 undo[i]();
             } catch (cleanupErr) {
-                console.error("[Sincord] Rollback step failed", cleanupErr);
+                console.error("[Discord] Rollback step failed", cleanupErr);
             }
         }
         throw err;
@@ -104,14 +104,14 @@ export const findStaleSibling = (currentExeDir: string): string | null => {
             try {
                 isDir = statSync(join(discordPath, name)).isDirectory();
             } catch (statErr) {
-                console.error("[Sincord] Skipping unreadable sibling", name, statErr);
+                console.error("[Discord] Skipping unreadable sibling", name, statErr);
                 continue;
             }
             if (!isDir) continue;
             if (isNewer(name, latest)) latest = name;
         }
     } catch (err) {
-        console.error("[Sincord] Failed to scan for sibling versions", err);
+        console.error("[Discord] Failed to scan for sibling versions", err);
         return null;
     }
 

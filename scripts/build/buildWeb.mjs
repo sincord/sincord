@@ -105,13 +105,14 @@ const buildConfigs = [
             IS_USERSCRIPT: "true",
             window: "unsafeWindow",
         },
-        outfile: "dist/Sincord.user.js",
+        outfile: "dist/Discord.user.js",
         banner: {
             js: readFileSync("browser/userscript.meta.js", "utf-8").replace("%version%", `${VERSION}.${new Date().getTime()}`)
         },
         footer: {
-            // UserScripts get wrapped in an iife, so define Vencord prop on window that returns our local
-            js: "Object.defineProperty(unsafeWindow,'Vencord',{get:()=>Vencord});"
+            // UserScripts get wrapped in an iife, so define Vencord prop on window that returns our local.
+            // configurable + try/catch so coexisting with another Vencord-based mod can't hard-crash the page.
+            js: "try{Object.defineProperty(unsafeWindow,'Vencord',{configurable:true,get:()=>Vencord})}catch(e){}"
         }
     }
 ];
@@ -155,8 +156,8 @@ async function loadDir(dir, basePath = "") {
  */
 async function buildExtension(target, files) {
     const entries = {
-        "dist/Sincord.js": await readFile("dist/browser/extension.js"),
-        "dist/Sincord.css": await readFile("dist/browser/extension.css"),
+        "dist/Discord.js": await readFile("dist/browser/extension.js"),
+        "dist/Discord.css": await readFile("dist/browser/extension.css"),
         ...await loadDir("dist/browser/vendor/monaco", "dist/browser/"),
         ...Object.fromEntries(await Promise.all(files.map(async f => {
             let content = await readFile(join("browser", f));
@@ -184,10 +185,10 @@ async function buildExtension(target, files) {
     console.info("Unpacked Extension written to dist/browser/" + target);
 }
 
-const appendCssRuntime = readFile("dist/Sincord.user.css", "utf-8").then(content => {
+const appendCssRuntime = readFile("dist/Discord.user.css", "utf-8").then(content => {
     const cssRuntime = `unsafeWindow._vcUserScriptRendererCss=\`${content.replaceAll("`", "\\`")}\``;
 
-    return appendFile("dist/Sincord.user.js", cssRuntime);
+    return appendFile("dist/Discord.user.js", cssRuntime);
 });
 
 if (!process.argv.includes("--skip-extension")) {

@@ -17,11 +17,9 @@
 */
 
 import ErrorBoundary from "@components/ErrorBoundary";
-import globalBadges from "@sincordplugins/globalBadges";
 import BadgeAPIPlugin from "@plugins/_api/badges";
 import { ComponentType, HTMLProps } from "react";
 
-import { isPluginEnabled } from "./PluginManager";
 
 export const enum BadgePosition {
     START,
@@ -107,17 +105,6 @@ export function _getBadges(args: BadgeUserArgs) {
 
     const donorBadges = BadgeAPIPlugin.getDonorBadges(args.userId);
     const sincordDonorBadges = BadgeAPIPlugin.getSincordDonorBadges(args.userId);
-    const GlobalBadges = isPluginEnabled(globalBadges.name) ? globalBadges.getGlobalBadges(args.userId) : false;
-
-    // do globalbadges first so it shows before the contrib badges but after donor badges
-    if (GlobalBadges) {
-        badges.unshift(
-            ...GlobalBadges.map(badge => ({
-                ...args,
-                ...badge,
-            }))
-        );
-    }
 
     if (donorBadges) {
         badges.unshift(

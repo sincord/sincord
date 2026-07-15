@@ -90,7 +90,7 @@ export function SincordDonorModal() {
                     >
                         <Flex justifyContent="center" alignItems="center" gap="0.5em">
                             <Heart />
-                            Sincord Donor
+                            Discord Donor
                         </Flex>
                     </Heading>
                 }
@@ -112,10 +112,10 @@ export function SincordDonorModal() {
                     </Flex>
                     <div style={{ padding: "1em" }}>
                         <Paragraph>
-                            This Badge is a special perk for Sincord (Not Vencord) Donors
+                            This Badge is a special perk for Discord (Not Vencord) Donors
                         </Paragraph>
                         <Paragraph className={Margins.top20}>
-                            Please consider supporting the development of Sincord by becoming a donor. It would mean a lot! :3
+                            Please consider supporting the development of Discord by becoming a donor. It would mean a lot! :3
                         </Paragraph>
                     </div>
                 </div>
@@ -146,7 +146,7 @@ export function SincordTranslatorModal() {
                         }}
                     >
                         <Flex justifyContent="center" alignItems="center" gap="0.5em">
-                            Sincord Translator
+                            Discord Translator
                         </Flex>
                     </Heading>
                 }
@@ -162,7 +162,7 @@ export function SincordTranslatorModal() {
                     </Flex>
                     <div className="vc-translate-modal-paragraph">
                         <Paragraph>
-                            Awarded to contributors who expand Sincord’s language support by translating content for the community.
+                            Awarded to contributors who expand Discord’s language support by translating content for the community.
                         </Paragraph>
                     </div>
                 </div>

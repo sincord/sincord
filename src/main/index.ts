@@ -99,8 +99,8 @@ if (!IS_VANILLA && !IS_EXTENSION) {
         try {
             if (RendererSettings.store.enableReactDevtools)
                 installExt("fmkadmapgofadopljbjfkapdkoienihi")
-                    .then(() => console.info("[Sincord] Installed React Developer Tools"))
-                    .catch(err => console.error("[Sincord] Failed to install React Developer Tools", err));
+                    .then(() => console.info("[Discord] Installed React Developer Tools"))
+                    .catch(err => console.error("[Discord] Failed to install React Developer Tools", err));
         } catch { }
 
         initCsp();

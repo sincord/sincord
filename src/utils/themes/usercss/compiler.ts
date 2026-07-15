@@ -18,7 +18,7 @@ const preprocessors: { [preprocessor: string]: (text: string, vars: Record<strin
             .map(([name, value]) => `--${name}: ${value}`)
             .join("; ");
 
-        return `/* ==Sincord== */\n:root{${variables}}\n/* ==/Sincord== */${text}`;
+        return `/* ==Discord== */\n:root{${variables}}\n/* ==/Discord== */${text}`;
     },
 
     async uso(text: string, vars: Record<string, string>) {
@@ -68,7 +68,7 @@ export async function compileUsercss(fileName: string) {
     const preprocessorFn = preprocessors[preprocessor];
 
     if (!preprocessorFn) {
-        UserCSSLogger.error("File", fileName, "requires preprocessor", preprocessor, "which isn't known to Sincord");
+        UserCSSLogger.error("File", fileName, "requires preprocessor", preprocessor, "which isn't known to Discord");
         return null;
     }
 

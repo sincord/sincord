@@ -99,8 +99,8 @@ export function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, on
         {
             condition: isSincordPlugin,
             src: "https://sincord.org/assets/favicon.png",
-            alt: "Sincord",
-            title: "Sincord Plugin"
+            alt: "Discord",
+            title: "Discord Plugin"
         },
         {
             condition: isVencordPlugin,

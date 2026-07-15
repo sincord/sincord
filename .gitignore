@@ -9,6 +9,16 @@ node_modules
 vencord_installer
 equicord_installer
 
+# Local installer build output + the bundled asar (CI regenerates it from `pnpm build`)
+installer/out/
+installer/desktop.asar
+Sinlotl-darwin-arm64
+Sinlotl-darwin-amd64
+Sinlotl-linux-amd64
+
+# Local security wordlists, not part of the fork
+SecLists/
+
 .idea
 .DS_Store
 
